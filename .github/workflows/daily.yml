@@ -1,1 +1,38 @@
+name: Daily Update LibreTV Sources
+
+on:
+  schedule:
+    # 使用 UTC 时间计算（北京时间 = UTC 时间 + 8 小时）
+    # '0 0 * * *' 表示每天 UTC 00:00（即北京时间每天早上 08:00）运行
+    - cron: '0 0 * * *'
+  
+  # 保留手动触发按钮，方便随时在网页端测试
+  workflow_dispatch:
+
+permissions:
+  # 赋予工作流写入仓库的权限，用于自动提交生成的 JSON 文件
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 配置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 运行更新脚本
+        run: python update.py
+
+      - name: 提交并推送最新文件
+        run: |
+          git config --local user.email "github-actions[bot]@://github.com"
+          git config --local user.name "github-actions[bot]"
+          git add libretv-sources.json
+          # 只有当文件内容真正发生变化时才提交，避免空提交报错
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: daily update sources" && git push)
 

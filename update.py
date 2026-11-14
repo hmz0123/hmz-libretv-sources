@@ -11,8 +11,10 @@ SOURCE_URLS = [
     "https://raw.githubusercontent.com/hmz0123/hmz-ziyuanzhan/refs/heads/main/docs/data/latest.json",
     # 3. hmz-tvbox02 资源站
     "https://raw.githubusercontent.com/hmz0123/hmz-tvbox02/refs/heads/master/jsm.json",
-    # hmz-tvyuan
+    # 4. hmz-tvyuan
     "https://raw.githubusercontent.com/hmz0123/hmz-tvyuan/refs/heads/master/tvbox_full.json",
+    # 5. hmz-ziyuanzhan 资源站
+    "https://github.com/hmz0123/hmz-ziyuanzhan/blob/main/docs/data/online.json",
 ]
 
 OUTPUT_FILE = "libretv-sources.json"

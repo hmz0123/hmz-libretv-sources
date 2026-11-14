@@ -16,7 +16,7 @@ SOURCE_URLS = [
 ]
 
 OUTPUT_FILE = "libretv-sources.json"
-MAX_SOURCES = 100  # LibreTV 单订阅上限为 100 个源
+MAX_SOURCES = 1000  # LibreTV 单订阅上限为 1000 个源
 ADULT_KEYWORDS = []
 
 def is_valid_url(url: str) -> bool:
